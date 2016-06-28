@@ -28,14 +28,10 @@ begin
   
   begin
   
+	 bcd := (others => '0');
     temp(11 downto 0) := bin;
     
-    for i in 0 to 3 loop
-      bcd(15 downto 1) := bcd(14 downto 0);  --shifting the bits.
-		bcd(0) := temp(11);
-		temp(11	downto 1) := temp(10 downto 0);
-		temp(0) :='0';
-		
+    for i in 0 to 11 loop	
 		    
       if bcd(3 downto 0) > 4 then 
         bcd(3 downto 0) := bcd(3 downto 0) + 3;
@@ -48,6 +44,13 @@ begin
 		if bcd(11 downto 8) > 4 then 
         bcd(11 downto 8) := bcd(11 downto 8) + 3;
       end if;
+			
+				
+		bcd(15 downto 1) := bcd(14 downto 0);  --shifting the bits.
+		bcd(0) := temp(11);
+		temp(11	downto 1) := temp(10 downto 0);
+		temp(0) :='0';
+		
     end loop;
 	 
 	 unidade <= bcd(3 downto 0);
